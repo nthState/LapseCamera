@@ -1,0 +1,25 @@
+
+## Virtual env
+api_venv
+
+## Build generated
+build/
+
+# Mac OS X
+*.DS_Store
+
+*.pyc
+__pycache__
+
+_package.zip
+
+## AWS credentials
+credentials
+
+# Packages
+*.egg-info
+
+requirements.txt
+
+*.xcuserstate
+*.xcbkptlist

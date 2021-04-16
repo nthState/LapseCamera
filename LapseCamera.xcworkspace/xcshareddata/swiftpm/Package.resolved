@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LapseCameraEffectPackage",
+        "repositoryURL": "https://github.com/nthState/LapseCameraEffectPackage",
+        "state": {
+          "branch": "main",
+          "revision": "35d11abe25c6fb93d65132adccb98a93d703b508",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

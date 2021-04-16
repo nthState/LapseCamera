@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		671FD3672629A38300D1D06C /* LapseCameraEffectPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 671FD3662629A38300D1D06C /* LapseCameraEffectPackage */; };
+		678E2E18262838F600E5B0CB /* LapseCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E17262838F600E5B0CB /* LapseCameraApp.swift */; };
+		678E2E1A262838F600E5B0CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E19262838F600E5B0CB /* ContentView.swift */; };
+		678E2E1C262838F600E5B0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678E2E1B262838F600E5B0CB /* Assets.xcassets */; };
+		678E2E1F262838F600E5B0CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678E2E1E262838F600E5B0CB /* Preview Assets.xcassets */; };
+		678E2E3F26283C9700E5B0CB /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E3E26283C9700E5B0CB /* Camera.swift */; };
+		678E2E4226283D1C00E5B0CB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 678E2E4126283D1C00E5B0CB /* README.md */; };
+		678E2E6226283FAE00E5B0CB /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E6126283FAE00E5B0CB /* Logging.swift */; };
+		678E2E65262841FF00E5B0CB /* CameraViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E64262841FF00E5B0CB /* CameraViewRepresentable.swift */; };
+		678E2E682628421400E5B0CB /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E672628421400E5B0CB /* CameraView.swift */; };
+		678E2E6C262845DE00E5B0CB /* PassThrough.metal in Sources */ = {isa = PBXBuildFile; fileRef = 678E2E6B262845DE00E5B0CB /* PassThrough.metal */; };
+		67A5A02C2628771E006DEFAD /* CameraEffectAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A5A02B2628771E006DEFAD /* CameraEffectAnimator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		678E2E14262838F600E5B0CB /* LapseCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LapseCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		678E2E17262838F600E5B0CB /* LapseCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapseCameraApp.swift; sourceTree = "<group>"; };
+		678E2E19262838F600E5B0CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		678E2E1B262838F600E5B0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		678E2E1E262838F600E5B0CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		678E2E20262838F600E5B0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		678E2E3E26283C9700E5B0CB /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		678E2E4126283D1C00E5B0CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		678E2E6126283FAE00E5B0CB /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		678E2E64262841FF00E5B0CB /* CameraViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewRepresentable.swift; sourceTree = "<group>"; };
+		678E2E672628421400E5B0CB /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		678E2E6B262845DE00E5B0CB /* PassThrough.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PassThrough.metal; sourceTree = "<group>"; };
+		678E2E8026284C0B00E5B0CB /* LapseCameraEffect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LapseCameraEffect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67A5A02B2628771E006DEFAD /* CameraEffectAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEffectAnimator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		678E2E11262838F600E5B0CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671FD3672629A38300D1D06C /* LapseCameraEffectPackage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		678E2E0B262838F600E5B0CB = {
+			isa = PBXGroup;
+			children = (
+				678E2E4126283D1C00E5B0CB /* README.md */,
+				678E2E16262838F600E5B0CB /* LapseCamera */,
+				678E2E15262838F600E5B0CB /* Products */,
+				678E2E7F26284C0B00E5B0CB /* Frameworks */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+		};
+		678E2E15262838F600E5B0CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				678E2E14262838F600E5B0CB /* LapseCamera.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		678E2E16262838F600E5B0CB /* LapseCamera */ = {
+			isa = PBXGroup;
+			children = (
+				678E2E17262838F600E5B0CB /* LapseCameraApp.swift */,
+				678E2E19262838F600E5B0CB /* ContentView.swift */,
+				678E2E3E26283C9700E5B0CB /* Camera.swift */,
+				678E2E64262841FF00E5B0CB /* CameraViewRepresentable.swift */,
+				678E2E672628421400E5B0CB /* CameraView.swift */,
+				67A5A02B2628771E006DEFAD /* CameraEffectAnimator.swift */,
+				678E2E6B262845DE00E5B0CB /* PassThrough.metal */,
+				678E2E1B262838F600E5B0CB /* Assets.xcassets */,
+				678E2E20262838F600E5B0CB /* Info.plist */,
+				678E2E1D262838F600E5B0CB /* Preview Content */,
+				678E2E6126283FAE00E5B0CB /* Logging.swift */,
+			);
+			path = LapseCamera;
+			sourceTree = "<group>";
+		};
+		678E2E1D262838F600E5B0CB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				678E2E1E262838F600E5B0CB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		678E2E7F26284C0B00E5B0CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				678E2E8026284C0B00E5B0CB /* LapseCameraEffect.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		678E2E13262838F600E5B0CB /* LapseCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 678E2E23262838F600E5B0CB /* Build configuration list for PBXNativeTarget "LapseCamera" */;
+			buildPhases = (
+				678E2E10262838F600E5B0CB /* Sources */,
+				678E2E11262838F600E5B0CB /* Frameworks */,
+				678E2E12262838F600E5B0CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LapseCamera;
+			packageProductDependencies = (
+				671FD3662629A38300D1D06C /* LapseCameraEffectPackage */,
+			);
+			productName = LapseCamera;
+			productReference = 678E2E14262838F600E5B0CB /* LapseCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		678E2E0C262838F600E5B0CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					678E2E13262838F600E5B0CB = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 678E2E0F262838F600E5B0CB /* Build configuration list for PBXProject "LapseCamera" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 678E2E0B262838F600E5B0CB;
+			packageReferences = (
+				671FD3652629A38300D1D06C /* XCRemoteSwiftPackageReference "LapseCameraEffectPackage" */,
+			);
+			productRefGroup = 678E2E15262838F600E5B0CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				678E2E13262838F600E5B0CB /* LapseCamera */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		678E2E12262838F600E5B0CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678E2E4226283D1C00E5B0CB /* README.md in Resources */,
+				678E2E1F262838F600E5B0CB /* Preview Assets.xcassets in Resources */,
+				678E2E1C262838F600E5B0CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		678E2E10262838F600E5B0CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678E2E1A262838F600E5B0CB /* ContentView.swift in Sources */,
+				678E2E6C262845DE00E5B0CB /* PassThrough.metal in Sources */,
+				67A5A02C2628771E006DEFAD /* CameraEffectAnimator.swift in Sources */,
+				678E2E18262838F600E5B0CB /* LapseCameraApp.swift in Sources */,
+				678E2E3F26283C9700E5B0CB /* Camera.swift in Sources */,
+				678E2E682628421400E5B0CB /* CameraView.swift in Sources */,
+				678E2E6226283FAE00E5B0CB /* Logging.swift in Sources */,
+				678E2E65262841FF00E5B0CB /* CameraViewRepresentable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		678E2E21262838F600E5B0CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		678E2E22262838F600E5B0CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		678E2E24262838F600E5B0CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"LapseCamera/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MBAEBNW38;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LapseCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lapse.camera.LapseCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		678E2E25262838F600E5B0CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"LapseCamera/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MBAEBNW38;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = LapseCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lapse.camera.LapseCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		678E2E0F262838F600E5B0CB /* Build configuration list for PBXProject "LapseCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				678E2E21262838F600E5B0CB /* Debug */,
+				678E2E22262838F600E5B0CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		678E2E23262838F600E5B0CB /* Build configuration list for PBXNativeTarget "LapseCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				678E2E24262838F600E5B0CB /* Debug */,
+				678E2E25262838F600E5B0CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		671FD3652629A38300D1D06C /* XCRemoteSwiftPackageReference "LapseCameraEffectPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nthState/LapseCameraEffectPackage";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		671FD3662629A38300D1D06C /* LapseCameraEffectPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 671FD3652629A38300D1D06C /* XCRemoteSwiftPackageReference "LapseCameraEffectPackage" */;
+			productName = LapseCameraEffectPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 678E2E0C262838F600E5B0CB /* Project object */;
+}
