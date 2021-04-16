@@ -51,6 +51,10 @@ struct ContentView: View {
         HStack {
           
           Button(action: {
+            //Camera.shared.stop()
+            Camera.shared.fauxStop()
+            takingPhoto = true
+            CameraEffectAnimator.shared.start = Date()
             Camera.shared.takePhoto()
             
           }, label: {
@@ -61,14 +65,14 @@ struct ContentView: View {
               .frame(width: 44, height: 44)
           })
           .onReceive(Camera.shared.photoComplete, perform: { (ok) in
-            takingPhoto = true
-            CameraEffectAnimator.shared.start = Date()
             resizeCameraContainer()
           })
           .padding(.trailing, 16)
           
           
           Button(action: {
+            Camera.shared.fauxStart()
+            //Camera.shared.start()
             reset = true
             width = .infinity
             height = .infinity

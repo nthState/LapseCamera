@@ -57,7 +57,7 @@ class CameraView: MTKView {
     
     cameraEffect = try! DistortEffect()
     
-    Camera.shared.imageBufferHandler = applyEffect
+    Camera.shared.imageBufferHandler = recieveBuffer
     
     configureMetal()
     
@@ -84,6 +84,7 @@ class CameraView: MTKView {
     
     Camera.shared.start()
       
+    self.isPaused = false
   }
   
   required init(coder: NSCoder) {
@@ -126,6 +127,9 @@ class CameraView: MTKView {
   override func draw(_ rect: CGRect) {
     var pixelBuffer: CVPixelBuffer?
     
+    if let buf = internalPixelBuffer {
+      processImage(videoPixelBuffer: buf)
+    }
     
     syncQueue.sync {
       pixelBuffer = internalPixelBuffer
@@ -198,21 +202,7 @@ class CameraView: MTKView {
 
 extension CameraView {
   
-  func applyEffect(_ imageBuffer: CMSampleBuffer) {
-    
-    guard let videoPixelBuffer = CMSampleBufferGetImageBuffer(imageBuffer),
-          let formatDescription = CMSampleBufferGetFormatDescription(imageBuffer) else {
-      return
-    }
-    
-    if !cameraEffect.isPrepared {
-      /*
-       outputRetainedBufferCountHint is the number of pixel buffers the renderer retains. This value informs the renderer
-       how to size its buffer pool and how many pixel buffers to preallocate. Allow 3 frames of latency to cover the dispatch_async call.
-       */
-      cameraEffect.prepare(with: formatDescription, outputRetainedBufferCountHint: 3)
-    }
-    
+  fileprivate func processImage(videoPixelBuffer: CVImageBuffer) {
     //let start = Date()
     //os_signpost(.begin, log: OSLog.effects, name: "Start GPU Effect")
     
@@ -229,6 +219,26 @@ extension CameraView {
       
       internalPixelBuffer = cameraEffect.apply(pixelBuffer: last, with: config)
     }
+  }
+  
+  func recieveBuffer(_ imageBuffer: CMSampleBuffer) {
+    
+    guard let videoPixelBuffer = CMSampleBufferGetImageBuffer(imageBuffer),
+          let formatDescription = CMSampleBufferGetFormatDescription(imageBuffer) else {
+      return
+    }
+    
+    if !cameraEffect.isPrepared {
+      /*
+       outputRetainedBufferCountHint is the number of pixel buffers the renderer retains. This value informs the renderer
+       how to size its buffer pool and how many pixel buffers to preallocate. Allow 3 frames of latency to cover the dispatch_async call.
+       */
+      cameraEffect.prepare(with: formatDescription, outputRetainedBufferCountHint: 3)
+    }
+    
+    internalPixelBuffer = videoPixelBuffer
+    
+    //processImage(videoPixelBuffer)
     
     //os_log("%{PUBLIC}@", log: OSLog.effects, type: .debug, "GPU Time: \(Date().timeIntervalSince(start))")
     //os_signpost(.end, log: OSLog.effects, name: "Finish GPU Effect")

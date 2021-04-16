@@ -25,6 +25,8 @@ class Camera: NSObject {
   
   public var shouldTakePhoto: Bool = true
   
+  private var shouldVendFrame: Bool = true
+  
   private var sessionStatus = SessionStatus.success
   
   var imageBufferHandler: ImageBufferHandler?
@@ -144,6 +146,22 @@ extension Camera {
     photoOutput.setPreparedPhotoSettingsArray([getCameraSettings()], completionHandler: nil)
   }
   
+  public func stop() {
+    captureSession.stopRunning()
+  }
+  
+}
+
+extension Camera {
+  
+  public func fauxStart() {
+    shouldVendFrame = true
+  }
+  
+  public func fauxStop() {
+    shouldVendFrame = false
+  }
+  
 }
 
 extension Camera: AVCapturePhotoCaptureDelegate {
@@ -171,15 +189,15 @@ extension Camera: AVCapturePhotoCaptureDelegate {
     }
     
     sessionQueue.async {
+      os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "photo start")
       self.photoOutput.capturePhoto(with: self.getCameraSettings(), delegate: self)
     }
     
   }
   
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-
+    os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "photo finish")
     photoComplete.send(error != nil)
-    
   }
   
 }
@@ -189,10 +207,16 @@ extension Camera: AVCapturePhotoCaptureDelegate {
 extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
   
   public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    
+    os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "drop frame")
   }
   
   public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    
+    guard shouldVendFrame else {
+      return
+    }
+    
+    os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "output")
     
     if let imageBufferHandler = imageBufferHandler {
       imageBufferHandler(sampleBuffer)
