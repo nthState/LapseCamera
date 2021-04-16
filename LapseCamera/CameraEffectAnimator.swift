@@ -53,7 +53,7 @@ extension CameraEffectAnimator {
       return blurFinish
     }
     
-    let t: Float = Float(interval) / Float(totalDuration)
+    let t: Float = Float(interval - (totalDuration * blurRelativeStartOffsetPercentage)) / Float(totalDuration)
     
     let percent = easeInQuint(x: t)
     
