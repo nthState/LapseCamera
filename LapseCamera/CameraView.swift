@@ -217,7 +217,7 @@ extension CameraView {
     //os_signpost(.begin, log: OSLog.effects, name: "Start GPU Effect")
     
     if let inAnimation = uiDelegate?.parent.takePhoto, inAnimation == false {
-      pixelBuffer = videoPixelBuffer
+      internalPixelBuffer = videoPixelBuffer
       lastPixelBuffer = videoPixelBuffer
     } else {
       guard let last = lastPixelBuffer else {
@@ -227,7 +227,7 @@ extension CameraView {
       let config = CameraEffectAnimator.shared.getEffectConfiguration()
       
       
-      pixelBuffer = cameraEffect.apply(pixelBuffer: last, with: config)
+      internalPixelBuffer = cameraEffect.apply(pixelBuffer: last, with: config)
     }
     
     //os_log("%{PUBLIC}@", log: OSLog.effects, type: .debug, "GPU Time: \(Date().timeIntervalSince(start))")

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
   
-  @State var takePhoto: Bool = false
+  @State var takingPhoto: Bool = false
   @State var reset: Bool = false
   @State var seconds: TimeInterval = 0.82
   @State var shrinkView: Bool = false
+  @State var shouldTakePhoto: Bool = true
   
   @State var width: CGFloat = .infinity
   @State var height: CGFloat = .infinity
@@ -36,9 +37,9 @@ struct ContentView: View {
       Color.blue
         .ignoresSafeArea()
       
-      CameraViewRepresentable(takePhoto: $takePhoto, reset: $reset)
+      CameraViewRepresentable(takePhoto: $takingPhoto, reset: $reset)
         .frame(maxWidth: width, maxHeight: height)
-        .cornerRadius((takePhoto && shrinkView) == false ? 0 : 20)
+        .cornerRadius((takingPhoto && shrinkView) == false ? 0 : 20)
         .animation(
           Animation.easeInOut(duration: seconds)
         )
@@ -60,7 +61,7 @@ struct ContentView: View {
               .frame(width: 44, height: 44)
           })
           .onReceive(Camera.shared.photoComplete, perform: { (ok) in
-            takePhoto = true
+            takingPhoto = true
             CameraEffectAnimator.shared.start = Date()
             resizeCameraContainer()
           })
@@ -71,7 +72,7 @@ struct ContentView: View {
             reset = true
             width = .infinity
             height = .infinity
-            takePhoto = false
+            takingPhoto = false
           }, label: {
             Image(systemName: "xmark")
               .resizable()
@@ -96,6 +97,14 @@ struct ContentView: View {
         HStack {
           Toggle("Shrink view?", isOn: $shrinkView)
             .foregroundColor(.green)
+        }
+        
+        HStack {
+          Toggle("Take photo?", isOn: $shouldTakePhoto)
+            .foregroundColor(.green)
+            .onChange(of: shouldTakePhoto) { (newValue) in
+              Camera.shared.shouldTakePhoto = shouldTakePhoto
+            }
         }
         
       }

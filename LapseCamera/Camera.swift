@@ -12,7 +12,6 @@ import os.log
 import Combine
 
 typealias ImageBufferHandler = ((_ imageBuffer: CMSampleBuffer) -> ())
-//typealias PhotoTakenComplete = ((_ complete: Bool) -> ())
 
 class Camera: NSObject {
   
@@ -24,10 +23,12 @@ class Camera: NSObject {
   
   static var shared: Camera = Camera()
   
+  public var shouldTakePhoto: Bool = true
+  
   private var sessionStatus = SessionStatus.success
   
   var imageBufferHandler: ImageBufferHandler?
-  //var photoTaken: PhotoTakenComplete?
+
   public let photoComplete = PassthroughSubject<Bool, Never>()
   
   var cameraSize: CGSize!
@@ -164,16 +165,21 @@ extension Camera: AVCapturePhotoCaptureDelegate {
   
   public func takePhoto() {
     
+    guard shouldTakePhoto else {
+      photoComplete.send(true)
+      return
+    }
+    
     sessionQueue.async {
       self.photoOutput.capturePhoto(with: self.getCameraSettings(), delegate: self)
     }
+    
   }
   
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-//    if let taken = photoTaken {
-//      taken(error != nil)
-//    }
+
     photoComplete.send(error != nil)
+    
   }
   
 }

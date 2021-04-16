@@ -31,7 +31,7 @@ class CameraEffectAnimator {
   
   // MARK: - Aberration
   
-  private let aberrationEasing = CubicBezier(0.17,1.15,1,1)
+  private let aberrationEasing = CubicBezier(0.0,1.15,1,1)
   private let red: Float = 9
   private let green: Float = 10.0
   private let blue: Float = 10.0
