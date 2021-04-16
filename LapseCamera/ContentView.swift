@@ -41,7 +41,7 @@ struct ContentView: View {
         .frame(maxWidth: width, maxHeight: height)
         .cornerRadius((takingPhoto && shrinkView) == false ? 0 : 20)
         .animation(
-          Animation.easeInOut(duration: seconds)
+          Animation.linear(duration: seconds)
         )
       
       VStack {
@@ -54,6 +54,7 @@ struct ContentView: View {
             //Camera.shared.stop()
             Camera.shared.fauxStop()
             takingPhoto = true
+            resizeCameraContainer()
             CameraEffectAnimator.shared.start = Date()
             Camera.shared.takePhoto()
             
@@ -65,7 +66,7 @@ struct ContentView: View {
               .frame(width: 44, height: 44)
           })
           .onReceive(Camera.shared.photoComplete, perform: { (ok) in
-            resizeCameraContainer()
+            
           })
           .padding(.trailing, 16)
           

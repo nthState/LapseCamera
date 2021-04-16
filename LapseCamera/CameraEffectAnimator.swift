@@ -25,13 +25,11 @@ class CameraEffectAnimator {
   // MARK: - Blur
   
   /// X seconds after the animation starts, the blur starts
-  private let blurRelativeStartTimeOffset: TimeInterval = 0.05
-  private let blurEasing = CubicBezier(1,0,1,1)
+  private let blurRelativeStartOffsetPercentage: TimeInterval = 0.25
   private let blurFinish: Float = 20
   
   // MARK: - Aberration
   
-  private let aberrationEasing = CubicBezier(0.0,1.15,1,1)
   private let red: Float = 9
   private let green: Float = 10.0
   private let blue: Float = 10.0
@@ -47,7 +45,7 @@ extension CameraEffectAnimator {
   
   private func getBlur(interval: TimeInterval) -> Float {
     
-    guard interval > blurRelativeStartTimeOffset else {
+    guard interval > (totalDuration * blurRelativeStartOffsetPercentage) else {
       return 0.0
     }
     
@@ -57,7 +55,7 @@ extension CameraEffectAnimator {
     
     let t: Float = Float(interval) / Float(totalDuration)
     
-    let percent = catmullRom(p0: blurEasing.0, p1: blurEasing.1, p2: blurEasing.2, p3: blurEasing.3, t: t)
+    let percent = easeInQuint(x: t)
     
     //print("blur: \(percent), at \(t)")
     return percent * blurFinish
@@ -71,7 +69,7 @@ extension CameraEffectAnimator {
     
     let t: Float = Float(interval) / Float(totalDuration)
     
-    let percent = cubicLerp(p0: aberrationEasing.0, p1: aberrationEasing.1, p2: aberrationEasing.2, p3: aberrationEasing.3, t: t)
+    let percent = easeOutCirc(x: t)
     
     //print("distortion: \(percent), at \(t)")
     return percent * aberration
@@ -85,7 +83,7 @@ extension CameraEffectAnimator {
     
     let t: Float = Float(interval) / Float(totalDuration)
     
-    let percent = cubicLerp(p0: aberrationEasing.0, p1: aberrationEasing.1, p2: aberrationEasing.2, p3: aberrationEasing.3, t: t)
+    let percent = easeOutCirc(x: t)
     
     //print("distortion: \(percent), at \(t)")
     return (Int(red * percent), Int(green * percent), Int(blue * percent))
@@ -109,26 +107,16 @@ extension CameraEffectAnimator {
 
 extension CameraEffectAnimator {
   
-  private func cubicLerp(p0: Float, p1: Float, p2: Float, p3: Float, t: Float) -> Float {
-    let r: Float = 1.0 - t;
-    let f0: Float = r * r * r;
-    let f1: Float = r * r * t * 3;
-    let f2: Float = r * t * t * 3;
-    let f3: Float = t * t * t;
-    let a = (f0*p0)
-    let b = (f1*p1)
-    let c = (f2*p2)
-    let d = (f3*p3)
-    return a + b + c + d
+  func easeOutQuint(x: Float) -> Float {
+    return 1 - pow(1 - x, 5);
   }
   
-  private func catmullRom(p0: Float, p1: Float, p2: Float, p3: Float, t: Float) -> Float {
-    return 0.5 * (
-      (2 * p1) +
-        (-p0 + p2) * t +
-        (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t +
-        (-p0 + 3 * p1 - 3 * p2 + p3) * t * t * t
-    )
+  func easeOutCirc(x: Float) -> Float {
+    return sqrt(1 - pow(x - 1, 2));
+  }
+  
+  func easeInQuint(x: Float) -> Float {
+  return x * x * x * x * x;
   }
   
 }
