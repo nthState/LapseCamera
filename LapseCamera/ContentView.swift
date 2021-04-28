@@ -12,8 +12,9 @@ struct ContentView: View {
   @State var takingPhoto: Bool = false
   @State var reset: Bool = false
   @State var seconds: TimeInterval = 0.82
-  @State var shrinkView: Bool = false
+  @State var shrinkView: Bool = true
   @State var shouldTakePhoto: Bool = true
+  @State var bluMax: CGFloat = 30
   
   @State var width: CGFloat = .infinity
   @State var height: CGFloat = .infinity
@@ -38,10 +39,14 @@ struct ContentView: View {
         .ignoresSafeArea()
       
       CameraViewRepresentable(takePhoto: $takingPhoto, reset: $reset)
-        .frame(maxWidth: width, maxHeight: height)
-        .cornerRadius((takingPhoto && shrinkView) == false ? 0 : 20)
-        .animation(
-          Animation.linear(duration: seconds)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .mask(
+          Rectangle()
+            .frame(maxWidth: width, maxHeight: height)
+            .cornerRadius((takingPhoto && shrinkView) == false ? 0 : 20)
+            .animation(
+              Animation.timingCurve(0.22, 1, 0.36, 1, duration: seconds) // https://easings.net/#easeOutQuint
+            )
         )
       
       VStack {
@@ -109,6 +114,15 @@ struct ContentView: View {
             .foregroundColor(.green)
             .onChange(of: shouldTakePhoto) { (newValue) in
               Camera.shared.shouldTakePhoto = shouldTakePhoto
+            }
+        }
+        
+        HStack {
+          Text("Blur Max: \(bluMax)")
+            .foregroundColor(.green)
+          Slider(value: $bluMax, in: 10...40)
+            .onChange(of: bluMax) { (newValue) in
+              CameraEffectAnimator.shared.blurMax = Float(bluMax)
             }
         }
         

@@ -9,6 +9,7 @@ import Foundation
 import Metal
 import MetalKit
 import LapseCameraEffect
+import OSLog
 
 typealias CubicBezier = (Float, Float, Float, Float)
 
@@ -26,7 +27,7 @@ class CameraEffectAnimator {
   
   /// X seconds after the animation starts, the blur starts
   private let blurRelativeStartOffsetPercentage: TimeInterval = 0.25
-  private let blurFinish: Float = 20
+  public var blurMax: Float = 20
   
   // MARK: - Aberration
   
@@ -45,20 +46,23 @@ extension CameraEffectAnimator {
   
   private func getBlur(interval: TimeInterval) -> Float {
     
-    guard interval > (totalDuration * blurRelativeStartOffsetPercentage) else {
+    let twentyPercent = (totalDuration * blurRelativeStartOffsetPercentage)
+    
+    guard interval > twentyPercent else {
       return 0.0
     }
     
     guard (interval > totalDuration) == false else {
-      return blurFinish
+      return blurMax
     }
     
-    let t: Float = Float(interval - (totalDuration * blurRelativeStartOffsetPercentage)) / Float(totalDuration)
+    let t: Float = Float(interval - twentyPercent) / Float(totalDuration)
     
     let percent = easeInQuint(x: t)
     
-    //print("blur: \(percent), at \(t)")
-    return percent * blurFinish
+    //os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "Blur time: \(t) value: \(percent), interval: \(interval)")
+    
+    return percent * blurMax
   }
   
   private func getDistortion(interval: TimeInterval) -> Float {
@@ -71,7 +75,6 @@ extension CameraEffectAnimator {
     
     let percent = easeOutCirc(x: t)
     
-    //print("distortion: \(percent), at \(t)")
     return percent * aberration
   }
   
@@ -85,7 +88,6 @@ extension CameraEffectAnimator {
     
     let percent = easeOutCirc(x: t)
     
-    //print("distortion: \(percent), at \(t)")
     return (Int(red * percent), Int(green * percent), Int(blue * percent))
   }
   
@@ -116,7 +118,7 @@ extension CameraEffectAnimator {
   }
   
   func easeInQuint(x: Float) -> Float {
-  return x * x * x * x * x;
+    return x * x * x * x * x;
   }
   
 }

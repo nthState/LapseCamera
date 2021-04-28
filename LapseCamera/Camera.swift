@@ -216,7 +216,7 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
       return
     }
     
-    os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "output")
+    //os_log("%{PUBLIC}@", log: OSLog.general, type: .debug, "output")
     
     if let imageBufferHandler = imageBufferHandler {
       imageBufferHandler(sampleBuffer)
